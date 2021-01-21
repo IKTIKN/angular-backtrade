@@ -1,0 +1,29 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+    background-color: #161b22;
+}
+
+li {
+    float: left;
+    width: 150px;
+}
+
+li a {
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: monospace;
+    font-size: medium;
+    font-weight: bolder;
+ 
+}
+  
+.active {
+    background-color: rgb(1, 4, 9);;
+    color: rgb(255, 255, 255)!important;
+}
