@@ -1,0 +1,20 @@
+<div class="tooltip">
+	{{ tooltipData.binanceOpenTime | date:'YYYY/MM/dd, HH:mm'}}
+	O: {{ tooltipData.binanceOpenPrice }}
+	H: {{ tooltipData.binanceHighPrice }}
+	L: {{ tooltipData.binanceLowPrice }}
+	C: {{ tooltipData.binanceClosePrice }}
+	
+	CHANGE:
+	{{ ( (tooltipData.binanceClosePrice - tooltipData.binanceOpenPrice) / tooltipData.binanceOpenPrice ) * 100 | number:'0.2-2'}}%
+
+	AMPLITUDE:
+	{{ ( (tooltipData.binanceHighPrice - tooltipData.binanceLowPrice) / tooltipData.binanceLowPrice) * 100  | number:'0.2-2'}}%
+</div>
+
+
+<div class="tooltip">
+	Volume(BASE): {{ tooltipData.binanceVolume | number }}
+	Volume(QUOTE): {{ tooltipData.binanceQuoteVolume | number}}
+	Trades: {{ tooltipData.binanceTrades }}
+</div>

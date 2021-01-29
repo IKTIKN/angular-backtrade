@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { TradingviewComponent } from './tradingview/tradingview.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { VolumeComponent } from './tradingview/volume/volume.component';
+import { TooltipComponent } from './tradingview/candlesticks/tooltip/tooltip.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { VolumeComponent } from './tradingview/volume/volume.component';
     HomeComponent,
     TradingviewComponent,
     MenuBarComponent,
-    VolumeComponent
+    VolumeComponent,
+    TooltipComponent
   ],
   imports: [
     BrowserModule,

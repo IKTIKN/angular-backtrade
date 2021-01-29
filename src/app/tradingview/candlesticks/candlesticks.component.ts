@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CandlestickDataService, ICandlestick} from 'src/app/candlestick-data.service';
+import { TooltipDataService } from 'src/app/tooltip-data.service';
 
 @Component({
   selector: 'app-candlesticks',
@@ -7,6 +8,7 @@ import { CandlestickDataService, ICandlestick} from 'src/app/candlestick-data.se
   styleUrls: ['./candlesticks.component.css']
 })
 export class CandlesticksComponent implements OnInit {
+
 
 
   title = 'Candlesticks';
@@ -17,15 +19,27 @@ export class CandlesticksComponent implements OnInit {
   colorUp = '#107C10';
   colorDown = '#E81123';
   colorSplitlines = '#30363d';
-  colorAxis = '#30363d';
-  colorAxisPointerLabel = ['#161b22', '#f0f6fc'];
+  colorAxis = '#484f58';
+  colorAxisPointerLabel = ['#c9d1d9', '#000'];
+  colorCrosshair = '#484f58';
+  colorTextTooltip = '#484f58';
 
-  constructor(private data: CandlestickDataService) { }
+  constructor(
+    private cd: ChangeDetectorRef,
+    private data: CandlestickDataService,
+    private tooltipData: TooltipDataService
+    ) { }
 
   ngOnInit(): void {
 
   }
 
+  tooltip(params: any) {
+    this.tooltipData.setTooltipData(params);
+    this.tooltipData.setBinanceData(this.data.binanceCandlesticks);
+    this.cd.detectChanges();
+    return null;
+  }
 
   private getDataMin() {
     var min = 1000000;
@@ -80,22 +94,20 @@ export class CandlesticksComponent implements OnInit {
     grid: [{
       left: '3%',
       right: '9%',
-      height: '50%',
-      top: '5%'
+      height: '75%',
+      top: '2%'
     }, {
       left: '3%',
       right: '9%',
-      height: '15%',
-      top: '55%'
+      height: '18%',
+      top: '77%'
     }],
 
     dataZoom: [{
       type: 'inside',
       start: 80,
       end: 100,
-
       xAxisIndex: [0, 1],
-
       moveOnMouseWheel: false
     },
       {
@@ -117,32 +129,29 @@ export class CandlesticksComponent implements OnInit {
         filterMode: 'empty'
     }
   ], 
-    
     tooltip: {
       show: true,
       alwaysShowContent: false,
       confine: true,
-      trigger: 'item',
+      trigger: 'axis',
       axisPointer: {
           type: 'cross',
+          snap: true,
           crossStyle: {
-            color: '#424242',
+            color: this.colorCrosshair,
             type: 'dashed'
           },
-          lineStyle: {
-            color: '#424242',
-            type: 'dashed'
-          }
+           lineStyle: {
+             color: this.colorCrosshair,
+             type: 'dashed'
+           }
       },
-
+      appendToBody: true,
       borderWidth: 0,
-      backgroundColor: '#161b22',
+      backgroundColor: 'none',
       position: [0, 0],
-      hideDelay: 500,
-      transitionDuration: 1,
-      extraCssText: 'width: 250px; height: fit-content; margin-left: 3%; display: block',
-      textStyle: {
-        fontFamily: 'monospace'
+      formatter: (params) => {
+        return this.tooltip(params);
       }
     },
     axisPointer: {
@@ -157,7 +166,7 @@ export class CandlesticksComponent implements OnInit {
       }
     },
     xAxis: [{
-     
+      gridIndex: 0,
       splitLine: {
         show: this.showSplitlines,
         lineStyle: {
@@ -184,7 +193,7 @@ export class CandlesticksComponent implements OnInit {
         type: 'line',
         label: {show: false},
         triggerTooltip: true,
-    },
+      },
       show: true,
       type: 'category',
       data: this.data.echartOpenTimes,
@@ -193,7 +202,6 @@ export class CandlesticksComponent implements OnInit {
       boundaryGap : true,
     },{
       type: 'category',
-
       gridIndex: 1,
       data: this.data.echartOpenTimes,
       scale: true,
@@ -203,11 +211,14 @@ export class CandlesticksComponent implements OnInit {
         interval: 'auto',
         lineStyle: {
           width: 1,
-          color: this.colorAxis,
+          color: this.colorSplitlines,
           opacity: 0.27
         }
       },
-      axisLabel: {show: true},
+      axisLabel: {
+        show: true,
+        color: this.colorAxis
+      },
       axisTick: {show: false},
       axisLine: { 
         show: false,
@@ -220,7 +231,6 @@ export class CandlesticksComponent implements OnInit {
       max: 'dataMax'
     }],
     yAxis: [{
-     
       position: 'right',
       axisLine: {
         show: true,
@@ -317,6 +327,7 @@ export class CandlesticksComponent implements OnInit {
         yAxisIndex: 1,
         itemStyle: {
             opacity: 0.4
+
         },
         // emphasis: {
         //     itemStyle: {
