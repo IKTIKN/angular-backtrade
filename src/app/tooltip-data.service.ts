@@ -43,11 +43,10 @@ export class TooltipDataService {
   }
 
   setTooltipData(tooltipData: ITooltipData[]) {
-    let candlestickIndex = 0;
+    // let candlestickIndex = 0;
     let volumeIndex = 0;
     
     // this.data = tooltipData;
-
     // this.logTooltip(tooltipData[0]);
     for (let x=0; x<tooltipData.length; x++) {
       // if (tooltipData[x].seriesType == 'candlestick') {
@@ -62,9 +61,9 @@ export class TooltipDataService {
     // this.closePrice = tooltipData[candlestickIndex].data[2];
     // this.highPrice = tooltipData[candlestickIndex].data[3];
     // this.lowPrice = tooltipData[candlestickIndex].data[4];
+    // this.volume = tooltipData[volumeIndex].data[1];
     
     this.index = tooltipData[volumeIndex].data[0];
-    // this.volume = tooltipData[volumeIndex].data[1];
     this.movementIndicator = tooltipData[volumeIndex].data[2];
   }
 
