@@ -94,13 +94,13 @@ export class CandlesticksComponent implements OnInit {
     grid: [{
       left: '3%',
       right: '9%',
-      height: '75%',
+      height: '70%',
       top: '2%'
     }, {
       left: '3%',
       right: '9%',
-      height: '18%',
-      top: '77%'
+      height: '20%',
+      top: '72%',
     }],
 
     dataZoom: [{
