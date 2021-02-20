@@ -6,15 +6,8 @@ import { ICandlestick } from './candlestick-data.service';
 })
 export class TooltipDataService {
 
-  data: any;
-  openPrice: number;
-  closePrice: number;
-  lowPrice: number;
-  highPrice: number;
-
-  volume: number;
-  index: number;
-  movementIndicator: number;
+  index = 0;
+  movementIndicator: -1;
   
   // zet deze onzin in een object 
   binanceOpenTime: number;
@@ -43,26 +36,12 @@ export class TooltipDataService {
   }
 
   setTooltipData(tooltipData: ITooltipData[]) {
-    // let candlestickIndex = 0;
     let volumeIndex = 0;
-    
-    // this.data = tooltipData;
-    // this.logTooltip(tooltipData[0]);
     for (let x=0; x<tooltipData.length; x++) {
-      // if (tooltipData[x].seriesType == 'candlestick') {
-      //   candlestickIndex = x;
-      // }
       if (tooltipData[x].seriesType == 'bar') {
         volumeIndex = x;
       }
     }
-
-    // this.openPrice = tooltipData[candlestickIndex].data[1];
-    // this.closePrice = tooltipData[candlestickIndex].data[2];
-    // this.highPrice = tooltipData[candlestickIndex].data[3];
-    // this.lowPrice = tooltipData[candlestickIndex].data[4];
-    // this.volume = tooltipData[volumeIndex].data[1];
-    
     this.index = tooltipData[volumeIndex].data[0];
     this.movementIndicator = tooltipData[volumeIndex].data[2];
   }

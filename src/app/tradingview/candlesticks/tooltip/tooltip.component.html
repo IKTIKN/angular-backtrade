@@ -1,20 +1,25 @@
 <div class="tooltip">
 	{{ tooltipData.binanceOpenTime | date:'YYYY/MM/dd, HH:mm'}}
-	O: {{ tooltipData.binanceOpenPrice }}
-	H: {{ tooltipData.binanceHighPrice }}
-	L: {{ tooltipData.binanceLowPrice }}
-	C: {{ tooltipData.binanceClosePrice }}
+	O: <span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'"> {{ tooltipData.binanceOpenPrice }} </span> 
+	H: <span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'"> {{ tooltipData.binanceHighPrice }} </span> 
+	L: <span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'"> {{ tooltipData.binanceLowPrice }} </span> 
+	C: <span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'"> {{ tooltipData.binanceClosePrice }} </span> 
 	
 	CHANGE:
-	{{ ( (tooltipData.binanceClosePrice - tooltipData.binanceOpenPrice) / tooltipData.binanceOpenPrice ) * 100 | number:'0.2-2'}}%
+	<span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'"> 
+		{{ ( (tooltipData.binanceClosePrice - tooltipData.binanceOpenPrice) / tooltipData.binanceOpenPrice ) * 100 | number:'0.2-2'}}%
+	</span> 
 
 	AMPLITUDE:
-	{{ ( (tooltipData.binanceHighPrice - tooltipData.binanceLowPrice) / tooltipData.binanceLowPrice) * 100  | number:'0.2-2'}}%
+	<span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'">
+		{{ ( (tooltipData.binanceHighPrice - tooltipData.binanceLowPrice) / tooltipData.binanceLowPrice) * 100  | number:'0.2-2'}}%
+	</span> 
+
 </div>
 
 
-<div class="tooltip">
-	Volume(BASE): {{ tooltipData.binanceVolume | number }}
-	Volume(QUOTE): {{ tooltipData.binanceQuoteVolume | number}}
-	Trades: {{ tooltipData.binanceTrades }}
+<div id="volume" class="tooltip">
+	Vol(BASE): <span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'"> {{ tooltipData.binanceVolume | number }} </span> 
+	Vol(QUOTE): <span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'"> {{ tooltipData.binanceQuoteVolume | number}} </span> 
+	Trades: <span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'"> {{ tooltipData.binanceTrades }} </span> 
 </div>

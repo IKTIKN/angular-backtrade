@@ -1,11 +1,23 @@
 .tooltip {
-    color: #ffffff;
+    color: #484f58;
     background-color: none;
     font-size: medium;
-    top: 2%;
-    padding: 5px;
-    margin-left: 3%;
+    top: 39px;
+
+    margin-left: 3.2%;
     width: fit-content;
     position: relative;
     z-index: 100;
+}
+
+.red {
+    color: #E81123;
+}
+
+.green {
+    color: #107C10;
+}
+
+#volume {
+    top: 303px;
 }

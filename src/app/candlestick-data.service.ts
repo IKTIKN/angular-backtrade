@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
+import { TooltipDataService } from './tooltip-data.service';
 
 
 @Injectable({
@@ -18,11 +19,16 @@ export class CandlestickDataService {
   echartVolumes = [];
 
   binanceCandlesticks = [];
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private tooltip: TooltipDataService) { }
 
   private getCandlestickData(): Observable<ICandlestick[]> {
     return this.http.get<ICandlestick[]>(this.binance+this.endpoint);
   }
+
+  private setFirstTooltipData(candlesticks: ICandlestick[]): void {
+    this.tooltip.setBinanceData(candlesticks.reverse());
+  }
+
 
   generateEchart(): void {
 
@@ -40,6 +46,7 @@ export class CandlestickDataService {
 
             this.binanceCandlesticks.push(c);
           }
+          this.setFirstTooltipData(candlesticks);
         }
       );
     }

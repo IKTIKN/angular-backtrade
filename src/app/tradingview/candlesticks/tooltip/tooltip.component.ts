@@ -13,11 +13,8 @@ export class TooltipComponent implements OnInit {
   constructor(public tooltipData: TooltipDataService) { }
 
   ngOnInit(): void {
-    console.log(this.tooltipData.data);
 
   }
 
-  updatePrice(): number {
-    return this.tooltipData.openPrice;
-  }
+
 }
