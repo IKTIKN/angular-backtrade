@@ -22,7 +22,13 @@ export class CandlesticksComponent implements OnInit {
   colorAxis = '#484f58';
   colorAxisPointerLabel = ['#c9d1d9', '#000'];
   colorCrosshair = '#484f58';
-  colorTextTooltip = '#484f58';
+  colorTextTooltip = '#82b1ff';
+
+  colorSlowSMA = '#FFF';
+  colorSMA = '#0091ea';
+  colorFastSMA = '#00bfa5';
+
+  widthAverageLine = 1;
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -319,6 +325,65 @@ export class CandlesticksComponent implements OnInit {
         animationDuration: 200,
         animationEasing: 'elasticin',
 
+      },
+      {
+        data: this.data.echartSlowSMA,
+        type: 'line',
+        lineStyle: {
+          color: this.colorSlowSMA,
+          width: this.widthAverageLine
+        },
+        z: 0,
+        smooth: true,
+        clip: false,
+        showSymbol: false,
+        name: 'SMA',
+        animationDuration: 200,
+        animationEasing: 'linear',
+        emphasis: {
+          lineStyle: {
+            width: this.widthAverageLine
+          }
+        }
+      }, 
+      {
+        data: this.data.echartSMA,
+        type: 'line',
+        lineStyle: {
+          color: this.colorSMA,
+          width: this.widthAverageLine
+        },
+        z: 0,
+        smooth: true,
+        clip: false,
+        showSymbol: false,
+        name: 'SMA',
+        animationDuration: 200,
+        animationEasing: 'linear',
+        emphasis: {
+          lineStyle: {
+            width: this.widthAverageLine
+          }
+        }
+      }, {
+        data: this.data.echartFastSMA,
+        type: 'line',
+        lineStyle: {
+          color: this.colorFastSMA,
+          width: this.widthAverageLine
+        },
+        z: 0,
+        smooth: true,
+        clip: false,
+        showSymbol: false,
+        name: 'SMA',
+        animationDuration: 200,
+        animationEasing: 'linear',
+        emphasis: {
+          lineStyle: {
+            width: this.widthAverageLine
+          }
+        }
       }, {
         name: 'Volume',
         type: 'bar',
