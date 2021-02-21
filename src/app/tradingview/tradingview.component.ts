@@ -9,7 +9,7 @@ import { CandlestickDataService, ICandlestick } from '../candlestick-data.servic
 export class TradingviewComponent implements OnInit {
   title = 'Tradingview';
 
-  constructor(private data: CandlestickDataService) { }
+  constructor(public data: CandlestickDataService) { }
 
   ngOnInit(): void {
     this.data.generateEchart()

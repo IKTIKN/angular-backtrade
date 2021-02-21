@@ -331,8 +331,6 @@ export class CandlesticksComponent implements OnInit {
         },
         name: 'LTC',
         barWidth: '70%',
-        animationDuration: 200,
-        animationEasing: 'elasticin',
       },
       {
         name: 'Volume',
@@ -355,11 +353,9 @@ export class CandlesticksComponent implements OnInit {
         },
         z: 0,
         smooth: true,
-        clip: false,
+
         showSymbol: false,
-        name: 'SMA',
-        animationDuration: 200,
-        animationEasing: 'linear',
+        name: 'SMA99',
         emphasis: {
           lineStyle: {
             width: this.widthAverageLine
@@ -377,9 +373,7 @@ export class CandlesticksComponent implements OnInit {
         smooth: true,
         clip: false,
         showSymbol: false,
-        name: 'SMA',
-        animationDuration: 200,
-        animationEasing: 'linear',
+        name: 'SMA25',
         emphasis: {
           lineStyle: {
             width: this.widthAverageLine
@@ -396,7 +390,7 @@ export class CandlesticksComponent implements OnInit {
         smooth: true,
         clip: false,
         showSymbol: false,
-        name: 'SMA',
+        name: 'SMA5',
         animationDuration: 200,
         animationEasing: 'linear',
         emphasis: {
