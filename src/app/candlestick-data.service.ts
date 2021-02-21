@@ -12,7 +12,7 @@ export class CandlestickDataService {
   binance = 'https://api.binance.com'
   endpoint = '/api/v3/klines?limit=1000&interval=1h&symbol=LTCUSDT';
   url = 'assets/candlestickdata/btcusdt5m.json';
-  testUrl = 'assets/candlestickdata/test.json';
+  testUrl = 'assets/candlestickdata/LTCUSDT_1d.json';
 
   echartCandlesticks = [];
   echartOpenTimes = [];
@@ -28,7 +28,7 @@ export class CandlestickDataService {
   constructor(private http: HttpClient, private tooltip: TooltipDataService, private ta: TaService) { }
 
   private getCandlestickData(): Observable<ICandlestick[]> {
-    return this.http.get<ICandlestick[]>(this.url);
+    return this.http.get<ICandlestick[]>(this.testUrl);
   }
 
   private setFirstTooltipData(candlesticks: ICandlestick[]): void {

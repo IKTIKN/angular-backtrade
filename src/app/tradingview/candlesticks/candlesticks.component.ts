@@ -1,3 +1,4 @@
+import { NONE_TYPE } from '@angular/compiler';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CandlestickDataService, ICandlestick} from 'src/app/candlestick-data.service';
 import { TooltipDataService } from 'src/app/tooltip-data.service';
@@ -24,7 +25,7 @@ export class CandlesticksComponent implements OnInit {
   colorCrosshair = '#484f58';
   colorTextTooltip = '#82b1ff';
 
-  colorSlowSMA = '#FFF';
+  colorSlowSMA = '#fff';
   colorSMA = '#0091ea';
   colorFastSMA = '#00bfa5';
 
@@ -123,16 +124,25 @@ export class CandlesticksComponent implements OnInit {
         realtime: true,
         start: 20,
         end: 70,
-        top: 0,
-        height: 25,
-        //handleIcon: 'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
-        handleSize: '100%',
-        borderColor: '#424242',
+        bottom: 0,
+        height: '2%',
+        // handleIcon: 'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+        borderColor: this.colorAxis,
+        fillerColor: '#ffffff00',
+        handleSize: 0,
         handleStyle: {
-          color: '#000',
+          color: this.colorCrosshair,
           borderType: 'solid'
         },
-        filterMode: 'empty'
+        moveHandleSize: 7,
+        moveHandleStyle: {
+          color: this.colorCrosshair,
+        },
+        // moveHandleIcon: 'M-320.9-50L-320.9-50c18.1,0,27.1,9,27.1,27.1V85.7c0,18.1-9,27.1-27.1,27.1l0,0c-18.1,0-27.1-9-27.1-27.1V-22.9C-348-41-339-50-320.9-50z M-212.3-50L-212.3-50c18.1,0,27.1,9,27.1,27.1V85.7c0,18.1-9,27.1-27.1,27.1l0,0c-18.1,0-27.1-9-27.1-27.1V-22.9C-239.4-41-230.4-50-212.3-50z M-103.7-50L-103.7-50c18.1,0,27.1,9,27.1,27.1V85.7c0,18.1-9,27.1-27.1,27.1l0,0c-18.1,0-27.1-9-27.1-27.1V-22.9C-130.9-41-121.8-50-103.7-50z',
+        left: '2.75%',
+        right: '9%',
+        showDetail: false,
+        showDataShadow: false
     }
   ], 
     tooltip: {
@@ -319,14 +329,12 @@ export class CandlesticksComponent implements OnInit {
           borderColor: null,
           borderColor0: null
         },
-
         name: 'LTC',
         barWidth: '70%',
         animationDuration: 200,
         animationEasing: 'elasticin',
-
       },
-{
+      {
         name: 'Volume',
         type: 'bar',
         barWidth: '70%',
@@ -336,11 +344,6 @@ export class CandlesticksComponent implements OnInit {
             opacity: 0.4
 
         },
-        // emphasis: {
-        //     itemStyle: {
-        //         color: '#424242'
-        //     }
-        // },
         data: this.data.echartVolumes
       },
       {
@@ -401,11 +404,8 @@ export class CandlesticksComponent implements OnInit {
             width: this.widthAverageLine
           }
         }
-      }, 
-    ],
+      }
+    ]
   };
-
-
-
 
 }
