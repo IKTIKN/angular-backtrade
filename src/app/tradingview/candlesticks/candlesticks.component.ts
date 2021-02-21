@@ -117,7 +117,7 @@ export class CandlesticksComponent implements OnInit {
       moveOnMouseWheel: false
     },
       {
-        show: false,
+        show: true,
         type: 'slider',
         xAxisIndex: [0, 1],
         realtime: true,
@@ -326,6 +326,23 @@ export class CandlesticksComponent implements OnInit {
         animationEasing: 'elasticin',
 
       },
+{
+        name: 'Volume',
+        type: 'bar',
+        barWidth: '70%',
+        xAxisIndex: 1,
+        yAxisIndex: 1,
+        itemStyle: {
+            opacity: 0.4
+
+        },
+        // emphasis: {
+        //     itemStyle: {
+        //         color: '#424242'
+        //     }
+        // },
+        data: this.data.echartVolumes
+      },
       {
         data: this.data.echartSlowSMA,
         type: 'line',
@@ -384,23 +401,7 @@ export class CandlesticksComponent implements OnInit {
             width: this.widthAverageLine
           }
         }
-      }, {
-        name: 'Volume',
-        type: 'bar',
-        barWidth: '70%',
-        xAxisIndex: 1,
-        yAxisIndex: 1,
-        itemStyle: {
-            opacity: 0.4
-
-        },
-        // emphasis: {
-        //     itemStyle: {
-        //         color: '#424242'
-        //     }
-        // },
-        data: this.data.echartVolumes
-      }
+      }, 
     ],
   };
 
