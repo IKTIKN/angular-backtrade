@@ -2,7 +2,7 @@
     color: #484f58;
     background-color: none;
     font-size: medium;
-    top: 39px;
+    top: 45px;
 
     margin-left: 3.2%;
     width: fit-content;
@@ -19,5 +19,5 @@
 }
 
 #volume {
-    top: 303px;
+    top: 305px;
 }

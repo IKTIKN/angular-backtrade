@@ -3,5 +3,5 @@ body {
     color: #f0f6fc;
     background-color: #010409;
     margin: 0px;
-    font-family: monospace;
+    font-family: monospace!important;
 }

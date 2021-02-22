@@ -26,7 +26,7 @@ export class TaService {
         sma.push(sum / averageLength);
       }
     }
-    console.log("SIMPLE MOVING AVERAGE", sma.length, sma);
+    // console.log("SIMPLE MOVING AVERAGE", sma.length, sma);
     
     return sma
   }

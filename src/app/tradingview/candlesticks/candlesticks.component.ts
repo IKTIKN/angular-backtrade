@@ -41,6 +41,12 @@ export class CandlesticksComponent implements OnInit {
 
   }
 
+  test() {
+    this.data.generateEchart('LTCUPUSDT', '5m');
+    console.log('TEST', this.data.dataLoaded);
+  }
+
+
   tooltip(params: any) {
     this.tooltipData.setTooltipData(params);
     this.tooltipData.setBinanceData(this.data.binanceCandlesticks);

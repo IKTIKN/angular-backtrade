@@ -23,7 +23,6 @@ export class TooltipDataService {
   constructor() { }
 
   setBinanceData(binanceData: ICandlestick[]) {
-    console.log(binanceData[this.index][5], binanceData[this.index][7], binanceData[this.index][8]);
     this.binanceOpenTime = binanceData[this.index][0];
     this.binanceOpenPrice = binanceData[this.index][1];
     this.binanceHighPrice = binanceData[this.index][2];
@@ -32,7 +31,8 @@ export class TooltipDataService {
     this.binanceVolume = binanceData[this.index][5];
     this.binanceQuoteVolume = binanceData[this.index][7];
     this.binanceTrades = binanceData[this.index][8];
-
+    
+    console.log(this.binanceOpenPrice, this.binanceClosePrice);
   }
 
   setTooltipData(tooltipData: ITooltipData[]) {
@@ -43,6 +43,7 @@ export class TooltipDataService {
       }
     }
     this.index = tooltipData[volumeIndex].data[0];
+    // console.log(tooltipData);
     this.movementIndicator = tooltipData[volumeIndex].data[2];
   }
 
