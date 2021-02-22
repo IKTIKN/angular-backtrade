@@ -1,4 +1,3 @@
-import { NONE_TYPE } from '@angular/compiler';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CandlestickDataService, ICandlestick} from 'src/app/candlestick-data.service';
 import { TooltipDataService } from 'src/app/tooltip-data.service';
@@ -9,8 +8,6 @@ import { TooltipDataService } from 'src/app/tooltip-data.service';
   styleUrls: ['./candlesticks.component.css']
 })
 export class CandlesticksComponent implements OnInit {
-
-
 
   title = 'Candlesticks';
 
@@ -31,15 +28,18 @@ export class CandlesticksComponent implements OnInit {
 
   widthAverageLine = 1;
 
+
   constructor(
     private cd: ChangeDetectorRef,
     private data: CandlestickDataService,
     private tooltipData: TooltipDataService
     ) { }
 
+
   ngOnInit(): void {
 
   }
+
 
   test() {
     this.data.generateEchart('LTCUPUSDT', '5m');
@@ -53,25 +53,10 @@ export class CandlesticksComponent implements OnInit {
     this.cd.detectChanges();
     return null;
   }
-
-  private getDataMin() {
-    var min = 1000000;
-    var max = 0;
-    for (var x = 0; x < this.data.echartCandlesticks.length; x++) {
-      if (this.data.echartCandlesticks[x][2] < min) {
-        min = this.data.echartCandlesticks[x][2];
-      }
-      if (this.data.echartCandlesticks[x][3] > max) {
-        max = this.data.echartCandlesticks[x][2];
-      }
-    }
-    console.log(min, max)
-    return min - 500;
-  }
+  
 
   options = {
     animation: false,
-
     textStyle: {
       fontFamily: 'monospace'
     },
@@ -346,7 +331,6 @@ export class CandlesticksComponent implements OnInit {
         yAxisIndex: 1,
         itemStyle: {
             opacity: 0.4
-
         },
         data: this.data.echartVolumes
       },
@@ -359,7 +343,6 @@ export class CandlesticksComponent implements OnInit {
         },
         z: 0,
         smooth: true,
-
         showSymbol: false,
         name: 'SMA99',
         emphasis: {

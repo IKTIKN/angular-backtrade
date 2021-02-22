@@ -16,6 +16,7 @@ import { TooltipComponent } from './tradingview/candlesticks/tooltip/tooltip.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { LoadingComponent } from './loading/loading.component';
+import { SymbolBarComponent } from './tradingview/symbol-bar/symbol-bar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { LoadingComponent } from './loading/loading.component';
     MenuBarComponent,
     VolumeComponent,
     TooltipComponent,
-    LoadingComponent
+    LoadingComponent,
+    SymbolBarComponent
   ],
   imports: [
     BrowserAnimationsModule,
