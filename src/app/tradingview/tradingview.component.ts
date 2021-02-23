@@ -12,7 +12,7 @@ export class TradingviewComponent implements OnInit {
   constructor(public data: CandlestickDataService) { }
 
   ngOnInit(): void {
-    this.data.generateEchart('DOGEUSDT', '30m');
+    this.data.setTradingView('DOGEUSDT', '30m');
   }
 
 }

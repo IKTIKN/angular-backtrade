@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { TooltipDataService } from './tooltip-data.service';
 import { TaService } from './ta.service';
-import { BinanceApiService } from './binance-api.service';
+import { BinanceApiService, ITicker, ITicker24h } from './binance-api.service';
 
 
 @Injectable({
@@ -11,16 +11,19 @@ import { BinanceApiService } from './binance-api.service';
 })
 export class CandlestickDataService {
 
+  selectedSymbol = 'BTCUSDT';
+  selectedInterval = '30m'
+
   dataLoaded = false;
 
-  echartCandlesticks = [];
-  echartOpenTimes = [];
-  echartVolumes = [];
+  ticker24h: ITicker24h;
 
+  echartCandlesticks = [];
+  echartOpenTimes: string[];
+  echartVolumes: any[];
   echartSlowSMA: number[];
   echartSMA: number[];
   echartFastSMA: number[];
-
   binanceCandlesticks = [];
 
   constructor(
@@ -40,8 +43,21 @@ export class CandlestickDataService {
     this.echartFastSMA = [];
   }
 
+  setTradingView(symbol: string, interval: string): void {
+    this.setSymbolBar(symbol);
+    this.generateEchart(symbol, interval);
+  }
 
-  generateEchart(symbol: string, interval: string): void {
+  private setSymbolBar(symbol: string): void {
+    this.api.get24hTicker(symbol).subscribe(
+      (ticker: ITicker24h) => {
+        this.ticker24h = ticker;
+      }
+    );
+  }
+
+
+  private generateEchart(symbol: string, interval: string): void {
     this.dataLoaded = false;
     this.resetData();
 
@@ -54,8 +70,9 @@ export class CandlestickDataService {
         this.echartFastSMA = this.ta.SimpleMovingAverage(candlesticks, 7);
         this.echartSlowSMA = this.ta.SimpleMovingAverage(candlesticks, 99);
 
-        for (var i = 0; i<candlesticks.length; i++) {
-          var c: ICandlestick = candlesticks[i];
+        for (let i = 0; i<candlesticks.length; i++) {
+          let c: ICandlestick = candlesticks[i];
+          
           this.echartCandlesticks.push([c[1], c[4], c[2], c[3]]);
           this.echartOpenTimes.push(new Date(c[0]).toLocaleDateString());
           this.echartVolumes.push([i, c[5], c[1] > c[4] ? -1 : 1 ]);

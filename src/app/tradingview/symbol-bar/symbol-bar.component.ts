@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CandlestickDataService } from 'src/app/candlestick-data.service';
 
 @Component({
   selector: 'app-symbol-bar',
@@ -7,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SymbolBarComponent implements OnInit {
 
-  symbol = 'BTCUSDT';
-  constructor() { }
+
+  constructor(public data: CandlestickDataService) { }
 
   ngOnInit(): void {
   }

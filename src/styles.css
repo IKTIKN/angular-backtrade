@@ -5,3 +5,11 @@ body {
     margin: 0px;
     font-family: monospace!important;
 }
+
+.red {
+    color: #E81123!important;
+}
+
+.green {
+    color: #107C10!important;
+}

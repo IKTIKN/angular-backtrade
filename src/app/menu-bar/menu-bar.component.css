@@ -2,8 +2,10 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow:hidden;
+    overflow: hidden;
     background-color: #161b22;
+    /* border-bottom: 1px solid white; */
+
 }
 
 li {
@@ -15,15 +17,17 @@ li a {
     display: block;
     color: #ffffff;
     text-align: center;
-    padding: 14px 16px;
+    padding: 10px 12px;
     text-decoration: none;
     font-family: monospace;
     font-size: medium;
-    font-weight: bolder;
- 
+    font-weight:900;
+    
+    
 }
-  
+
 .active {
-    background-color: rgb(1, 4, 9);;
+    background-color: rgb(1, 4, 9);
     color: rgb(255, 255, 255)!important;
+    border-top: 3px solid rgb(247, 105, 89);
 }

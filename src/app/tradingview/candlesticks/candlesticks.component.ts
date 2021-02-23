@@ -17,7 +17,7 @@ export class CandlesticksComponent implements OnInit {
   colorUp = '#107C10';
   colorDown = '#E81123';
   colorSplitlines = '#30363d';
-  colorAxis = '#484f58';
+  colorAxis = '#636c77';
   colorAxisPointerLabel = ['#c9d1d9', '#000'];
   colorCrosshair = '#484f58';
   colorTextTooltip = '#82b1ff';
@@ -42,7 +42,7 @@ export class CandlesticksComponent implements OnInit {
 
 
   test() {
-    this.data.generateEchart('LTCUPUSDT', '5m');
+    this.data.setTradingView('LTCUPUSDT', '5m');
     console.log('TEST', this.data.dataLoaded);
   }
 

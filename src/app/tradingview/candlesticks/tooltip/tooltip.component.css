@@ -1,5 +1,5 @@
 .tooltip {
-    color: #484f58;
+    color: #636c77;
     background-color: none;
     font-size: medium;
     top: 45px;
@@ -10,13 +10,6 @@
     z-index: 100;
 }
 
-.red {
-    color: #E81123;
-}
-
-.green {
-    color: #107C10;
-}
 
 #volume {
     top: 305px;
