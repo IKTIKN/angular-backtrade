@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
 import { TooltipDataService } from './tooltip-data.service';
 import { TaService } from './ta.service';
-import { BinanceApiService, ITicker, ITicker24h } from './binance-api.service';
+import { BinanceApiService, ITicker24h } from './binance-api.service';
 
 
 @Injectable({
@@ -15,8 +13,11 @@ export class CandlestickDataService {
   selectedInterval = '30m'
 
   dataLoaded = false;
+  tickerLoaded = false;
+  tickersLoaded = false;
 
-  ticker24h: ITicker24h;
+  currentTicker24h: ITicker24h;
+  tickers24h: ITicker24h[];
 
   echartCandlesticks = [];
   echartOpenTimes: string[];
@@ -43,22 +44,56 @@ export class CandlestickDataService {
     this.echartFastSMA = [];
   }
 
+
   setTradingView(symbol: string, interval: string): void {
-    this.setSymbolBar(symbol);
+    this.selectedSymbol = symbol;
+    this.dataLoaded = false;
+    this.tickerLoaded = false;
+    this.setTicker24h(symbol);
     this.generateEchart(symbol, interval);
   }
 
-  private setSymbolBar(symbol: string): void {
+
+  setMarketView(): void {
+    this.tickerLoaded = false;
+    this.setTickers24h();
+  }
+
+
+  private setTickers24h(): void {
+    this.api.getAll24hTickers().subscribe(
+      (tickers: ITicker24h[]) => {
+        this.tickers24h = tickers;
+        this.tickersLoaded = true;
+      }
+    );
+  }
+
+
+  // private setTicker24h(symbol: string): void {
+  //   this.tickers24h.forEach(
+  //     (ticker) => {
+  //       if (ticker.symbol === symbol) {
+  //         this.currentTicker24h = ticker;
+  //         this.tickerLoaded = true;
+  //       }
+  //     }
+  //   );
+  // }
+
+
+  private setTicker24h(symbol: string): void {
     this.api.get24hTicker(symbol).subscribe(
       (ticker: ITicker24h) => {
-        this.ticker24h = ticker;
+        this.currentTicker24h = ticker;
+        this.tickerLoaded = true;
       }
     );
   }
 
 
   private generateEchart(symbol: string, interval: string): void {
-    this.dataLoaded = false;
+    // this.dataLoaded = false;
     this.resetData();
 
     this.api.getCandlestickData(symbol, interval).subscribe(

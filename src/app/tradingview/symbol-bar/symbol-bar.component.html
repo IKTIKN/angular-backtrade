@@ -3,7 +3,12 @@
     <table>
 
         <tr>
-            <th class="bigText" rowspan="2" colspan="2">{{ data.ticker24h?.symbol }} {{ data.ticker24h?.lastPrice }}</th>
+            <th class="bigText" rowspan="2" colspan="2">
+                {{ data.currentTicker24h?.symbol }} 
+                <span [class]="data.currentTicker24h?.priceChange > 0 ? 'green' : 'red'">
+                    {{ data.currentTicker24h?.lastPrice }}
+                </span>
+            </th>
             <!-- <th class="bigText" rowspan="2"></th> -->
             <th>24h Change</th>
             <th>24h Open</th>
@@ -13,14 +18,14 @@
             <th>24h Volume(QUOTE)</th>
         </tr>
         <tr>
-            <td [class]="data.ticker24h?.priceChange > 0 ? 'green' : 'red'">
-                {{ data.ticker24h?.priceChange | number }} {{ data.ticker24h?.priceChangePercent | number }}%
+            <td [class]="data.currentTicker24h?.priceChange > 0 ? 'green' : 'red'">
+                {{ data.currentTicker24h?.priceChange | number }} {{ data.currentTicker24h?.priceChangePercent | number }}%
             </td>
-            <td>{{ data.ticker24h?.openPrice | number }}</td>
-            <td>{{ data.ticker24h?.highPrice | number }}</td>
-            <td>{{ data.ticker24h?.lowPrice | number }}</td>
-            <td>{{ data.ticker24h?.volume | number }}</td>
-            <td>{{ data.ticker24h?.quoteVolume | number }}</td>
+            <td>{{ data.currentTicker24h?.openPrice | number }}</td>
+            <td>{{ data.currentTicker24h?.highPrice | number }}</td>
+            <td>{{ data.currentTicker24h?.lowPrice | number }}</td>
+            <td>{{ data.currentTicker24h?.volume | number }}</td>
+            <td>{{ data.currentTicker24h?.quoteVolume | number }}</td>
         </tr>
     
     </table>

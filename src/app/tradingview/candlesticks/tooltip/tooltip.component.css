@@ -2,9 +2,8 @@
     color: #636c77;
     background-color: none;
     font-size: medium;
-    top: 45px;
-
-    margin-left: 3.2%;
+    top: 68px;
+    margin-left: 10px;
     width: fit-content;
     position: relative;
     z-index: 100;
@@ -12,5 +11,5 @@
 
 
 #volume {
-    top: 305px;
+    top: 468px;
 }

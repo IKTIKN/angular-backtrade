@@ -15,19 +15,17 @@ li {
 
 li a {
     display: block;
-    color: #ffffff;
+    color: #f0f6fc;
     text-align: center;
-    padding: 10px 12px;
+    padding: 10px 12px 14px 12px;
     text-decoration: none;
     font-family: monospace;
     font-size: medium;
     font-weight:900;
-    
-    
+    border-top: 3px solid #161b22;
 }
 
 .active {
     background-color: rgb(1, 4, 9);
-    color: rgb(255, 255, 255)!important;
-    border-top: 3px solid rgb(247, 105, 89);
+    border-top: 3px solid rgb(247, 105, 89)!important;
 }

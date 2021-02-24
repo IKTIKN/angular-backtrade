@@ -139,8 +139,8 @@ export class BinanceApiService {
    * GET /api/v3/ticker/24hr
    * @summary 24 hour rolling window price change statistics. Weight: 40
    */
-  getAll24hTickers(symbol: string): Observable<ITicker24h[]> {
-    const requestUrl = `/api/v3/ticker/24hr?symbol=${symbol}`;
+  getAll24hTickers(): Observable<ITicker24h[]> {
+    const requestUrl = `/api/v3/ticker/24hr`;
     return this.http.get<ITicker24h[]>(this.baseUrl + requestUrl);
   }
 

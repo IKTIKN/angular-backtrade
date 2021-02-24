@@ -17,6 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { LoadingComponent } from './loading/loading.component';
 import { SymbolBarComponent } from './tradingview/symbol-bar/symbol-bar.component';
+import { MarketviewComponent } from './marketview/marketview.component';
+import { AllMarketsComponent } from './marketview/all-markets/all-markets.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { SymbolBarComponent } from './tradingview/symbol-bar/symbol-bar.componen
     VolumeComponent,
     TooltipComponent,
     LoadingComponent,
-    SymbolBarComponent
+    SymbolBarComponent,
+    MarketviewComponent,
+    AllMarketsComponent
   ],
   imports: [
     BrowserAnimationsModule,

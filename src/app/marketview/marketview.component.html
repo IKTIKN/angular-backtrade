@@ -1,0 +1,4 @@
+<app-all-markets *ngIf="this.data.tickersLoaded; else loading"></app-all-markets>
+<ng-template #loading>
+    <app-loading></app-loading>
+</ng-template>

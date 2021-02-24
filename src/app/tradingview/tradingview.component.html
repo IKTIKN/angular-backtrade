@@ -1,6 +1,6 @@
-<app-symbol-bar></app-symbol-bar>
-<app-candlesticks *ngIf="this.data.dataLoaded; else loading"></app-candlesticks>
+
+<app-symbol-bar *ngIf="this.data.dataLoaded && this.data.tickerLoaded"></app-symbol-bar>
+<app-candlesticks *ngIf="this.data.dataLoaded && this.data.tickerLoaded; else loading"></app-candlesticks>
 <ng-template #loading>
     <app-loading></app-loading>
 </ng-template>
-<!-- <app-volume></app-volume> -->
