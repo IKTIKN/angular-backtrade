@@ -1,7 +1,6 @@
 table {
     width: 90%;
     margin: 0 auto;
-
     background-color: inherit;
 }
 
@@ -12,6 +11,5 @@ table {
 
 td, th {
     color: inherit;
-    font-family: monospace;
     width: 5%;
 }

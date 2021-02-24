@@ -1,0 +1,52 @@
+<mat-card class="material-card">
+    <mat-card-header>
+        <div mat-card-avatar class="material-header-image"></div>
+        <mat-card-title>Exchange Information</mat-card-title>
+        <mat-card-subtitle>Binance</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <table>
+            <span>
+                <tr>
+                    <th colspan="2">Timezone</th>
+                    <td></td>
+                    <td>{{ info.timezone }}</td>
+                </tr>
+                <br><br>
+                <tr>
+                    <th colspan="2">Servertime</th>
+                    <td>{{ info.serverTime }}</td>
+                    <td>{{ info.serverTime | date:'YYYY/MM/dd, HH:mm:ss'}}</td>
+                </tr>
+                <br><br>
+            </span>
+            <span *ngFor="let limit of info.rateLimits">
+                <tr>
+                    <th>Ratelimit</th>
+                    <td>Type</td>
+                    <td>{{ limit.rateLimitType }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Interval</td>
+                    <td>{{ limit.interval }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Interval num</td>
+                    <td>{{ limit.intervalNum }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Limit</td>
+                    <td>{{ limit.limit }}</td>
+                </tr>
+                <br><br>
+            </span>
+        </table>
+
+
+    </mat-card-content>
+
+</mat-card>
+  

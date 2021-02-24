@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { BinanceDataService } from 'src/app/binance-data.service';
 import { CandlestickDataService, ICandlestick} from 'src/app/candlestick-data.service';
 import { TooltipDataService } from 'src/app/tooltip-data.service';
 
@@ -32,12 +33,12 @@ export class CandlesticksComponent implements OnInit {
   constructor(
     private cd: ChangeDetectorRef,
     private data: CandlestickDataService,
-    private tooltipData: TooltipDataService
+    private tooltipData: TooltipDataService,
+    private binance: BinanceDataService
     ) { }
 
 
   ngOnInit(): void {
-
   }
 
 
@@ -58,7 +59,9 @@ export class CandlesticksComponent implements OnInit {
   options = {
     animation: false,
     textStyle: {
-      fontFamily: 'monospace'
+      fontFamily: 'roboto',
+      // fontSize: 18,
+      // fontWeight: 'lighter'
     },
     legend:
     {
@@ -152,7 +155,6 @@ export class CandlesticksComponent implements OnInit {
         right: '8%',
         bottom: 0,
         height: 10,
-        // handleIcon: 'M10.7,11.9H9.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
         borderColor: '#ffffff00',
         fillerColor: '#ffffff00',
         handleSize: 0,
@@ -166,7 +168,6 @@ export class CandlesticksComponent implements OnInit {
         {
           color: this.colorCrosshair,
         },
-        // moveHandleIcon: 'M-320.9-50L-320.9-50c18.1,0,27.1,9,27.1,27.1V85.7c0,18.1-9,27.1-27.1,27.1l0,0c-18.1,0-27.1-9-27.1-27.1V-22.9C-348-41-339-50-320.9-50z M-212.3-50L-212.3-50c18.1,0,27.1,9,27.1,27.1V85.7c0,18.1-9,27.1-27.1,27.1l0,0c-18.1,0-27.1-9-27.1-27.1V-22.9C-239.4-41-230.4-50-212.3-50z M-103.7-50L-103.7-50c18.1,0,27.1,9,27.1,27.1V85.7c0,18.1-9,27.1-27.1,27.1l0,0c-18.1,0-27.1-9-27.1-27.1V-22.9C-130.9-41-121.8-50-103.7-50z',
         showDetail: false,
         showDataShadow: false
       }

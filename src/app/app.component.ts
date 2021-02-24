@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BinanceDataService } from './binance-data.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'backtrade';
+
+  constructor(private binance: BinanceDataService) {}
+
+  ngOnInit() {
+    this.binance.setBinanceExchangeInfo();
+  }
 }

@@ -231,7 +231,7 @@ export interface IExchangeInformation {
   serverTime: number;
   rateLimits: IRateLimit[];
   exchangeFilters: any[];
-  symbols: Symbol[];
+  symbols: ISymbol[];
 }
 
 

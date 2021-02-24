@@ -1,0 +1,29 @@
+
+mat-card-subtitle {
+    color:rgb(247, 205, 89);
+}
+
+th, td {
+    text-align: start;
+    min-width: 145px;
+    /* border: 1px solid salmon; */
+}
+
+th {
+    color:rgb(247, 205, 89);
+}
+
+.material-card {
+    background-color: #010409;
+    border-left: 1px solid rgba(247, 205, 89, 0.753);
+    color: inherit;
+    margin: 25px;
+    max-width: fit-content;
+    border-radius: 0px;
+    
+}
+  
+.material-header-image {
+    background-image: url('https://logos-download.com/wp-content/uploads/2018/04/Binance_logo_coin.png');
+    background-size: cover;
+}

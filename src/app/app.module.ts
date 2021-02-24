@@ -19,6 +19,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { SymbolBarComponent } from './tradingview/symbol-bar/symbol-bar.component';
 import { MarketviewComponent } from './marketview/marketview.component';
 import { AllMarketsComponent } from './marketview/all-markets/all-markets.component';
+import { ExchangeInfoComponent } from './home/exchange-info/exchange-info.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AllMarketsComponent } from './marketview/all-markets/all-markets.compon
     LoadingComponent,
     SymbolBarComponent,
     MarketviewComponent,
-    AllMarketsComponent
+    AllMarketsComponent,
+    ExchangeInfoComponent
   ],
   imports: [
     BrowserAnimationsModule,

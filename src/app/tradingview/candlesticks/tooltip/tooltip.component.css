@@ -1,7 +1,7 @@
 .tooltip {
     color: #636c77;
-    background-color: none;
-    font-size: medium;
+    /* background-color: #01040990; */
+    font-size: small;
     top: 68px;
     margin-left: 10px;
     width: fit-content;
