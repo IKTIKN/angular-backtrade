@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BinanceDataService } from './binance-data.service';
+import { BinanceDataService } from './services/binance-data.service';
 
 @Component({
   selector: 'app-root',
