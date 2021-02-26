@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TooltipDataService } from 'src/app/services/tooltip-data.service';
+import { ICandlestick } from 'src/app/interfaces/candlestick';
 
 @Component({
   selector: 'app-tooltip',
@@ -7,14 +7,15 @@ import { TooltipDataService } from 'src/app/services/tooltip-data.service';
   styleUrls: ['./tooltip.component.css']
 })
 export class TooltipComponent implements OnInit {
-
-  currentPrice = 0;
-
-  constructor(public tooltipData: TooltipDataService) { }
+  @Input() candlestick: ICandlestick;
+  
+  constructor() { }
 
   ngOnInit(): void {
-
   }
 
+  isBullish(): boolean {
+    return this.candlestick.open < this.candlestick.close;
+  }
 
 }

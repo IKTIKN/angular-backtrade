@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CandlestickDataService } from 'src/app/services/candlestick-data.service';
+import { BinanceDataService } from 'src/app/services/binance-data.service';
 
 @Component({
   selector: 'app-marketview',
@@ -8,10 +8,10 @@ import { CandlestickDataService } from 'src/app/services/candlestick-data.servic
 })
 export class MarketviewComponent implements OnInit {
 
-  constructor(public data: CandlestickDataService) { }
+  constructor(public binance: BinanceDataService) { }
 
   ngOnInit(): void {
-    this.data.setMarketView();
+    this.binance.initializeMarketView();
   }
 
 }

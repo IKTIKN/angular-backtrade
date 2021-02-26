@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CandlestickDataService } from 'src/app/services/candlestick-data.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { ITicker24h } from 'src/app/interfaces/ticker24h';
 
 @Component({
   selector: 'app-all-markets',
@@ -7,11 +7,11 @@ import { CandlestickDataService } from 'src/app/services/candlestick-data.servic
   styleUrls: ['./all-markets.component.css']
 })
 export class AllMarketsComponent implements OnInit {
+  @Input() tickers24h: ITicker24h[];
 
   displayedColumns: string[] = ['Symbol', 'Price', 'Low', 'High', 'Change', 'Change %', 'Volume'];
   
-  constructor(public data: CandlestickDataService) { }
-  dataSource = this.data.tickers24h;
+  constructor() { }
 
   ngOnInit(): void {
     

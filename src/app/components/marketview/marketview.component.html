@@ -1,4 +1,4 @@
-<app-all-markets *ngIf="this.data.tickersLoaded; else loading"></app-all-markets>
+<app-all-markets [tickers24h]="binance.tickers24h" *ngIf="binance.tickersLoaded; else loading"></app-all-markets>
 <ng-template #loading>
     <app-loading></app-loading>
 </ng-template>

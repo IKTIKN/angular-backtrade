@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ITooltipData } from 'src/app/interfaces/tooltipdata';
 import { BinanceDataService } from 'src/app/services/binance-data.service';
-import { CandlestickDataService } from 'src/app/services/candlestick-data.service';
-import { TooltipDataService } from 'src/app/services/tooltip-data.service';
+import { TaService } from 'src/app/services/ta.service';
 
 
 @Component({
@@ -28,30 +28,37 @@ export class CandlesticksComponent implements OnInit {
   colorSMA = '#0091ea';
   colorFastSMA = '#00bfa5';
 
+  timePeriodSlowSMA = 99;
+  timePeriodSMA = 25;
+  timePeriodFastSMA = 7;
+
   widthAverageLine = 1;
+
+  widthBar = '70%';
+
+  selectedCandlestickIndex = 0;
 
 
   constructor(
     private cd: ChangeDetectorRef,
-    private data: CandlestickDataService,
-    private tooltipData: TooltipDataService,
-    private binance: BinanceDataService
-    ) { }
+    private ta: TaService,
+    public binance: BinanceDataService
+  ) { }
 
 
   ngOnInit(): void {
+    this.selectedCandlestickIndex = this.binance.binanceCandlesticks.length - 1;
   }
 
 
-  test() {
-    this.data.setTradingView('LTCUPUSDT', '5m');
-    console.log('TEST', this.data.dataLoaded);
-  }
-
-
-  tooltip(params: any) {
-    this.tooltipData.setTooltipData(params);
-    this.tooltipData.setBinanceData(this.data.binanceCandlesticks);
+  private tooltip(params: ITooltipData[]) {
+    let volumeIndex = 0;
+    for (let x=0; x<params.length; x++) {
+      if (params[x].seriesType == 'bar') {
+        volumeIndex = x;
+      }
+    }
+    this.selectedCandlestickIndex = params[volumeIndex].data[0];
     this.cd.detectChanges();
     return null;
   }
@@ -61,8 +68,6 @@ export class CandlesticksComponent implements OnInit {
     animation: false,
     textStyle: {
       fontFamily: 'roboto',
-      // fontSize: 18,
-      // fontWeight: 'lighter'
     },
     legend:
     {
@@ -77,7 +82,7 @@ export class CandlesticksComponent implements OnInit {
       data:
       [
         {
-          name: this.data.selectedSymbol,
+          name: this.binance.selectedSymbol,
           icon: 'none'
         },
         {
@@ -259,7 +264,7 @@ export class CandlesticksComponent implements OnInit {
         },
         show: true,
         type: 'category',
-        data: this.data.echartOpenTimes,
+        data: this.binance.echartOpenTimes,
         min: 'dataMin',
         max: 'dataMax',
         boundaryGap : true,
@@ -267,7 +272,7 @@ export class CandlesticksComponent implements OnInit {
       {
         type: 'category',
         gridIndex: 1,
-        data: this.data.echartOpenTimes,
+        data: this.binance.echartOpenTimes,
         scale: true,
         boundaryGap : true,
         splitLine: { 
@@ -396,9 +401,9 @@ export class CandlesticksComponent implements OnInit {
     [
       {
         type: 'candlestick',
-        data: this.data.echartCandlesticks,
-        name: this.data.selectedSymbol,
-        barWidth: '70%',
+        data: this.binance.echartCandlesticks,
+        name: this.binance.selectedSymbol,
+        barWidth: this.widthBar,
         legendHoverLink: false,
         itemStyle:
         {
@@ -411,8 +416,8 @@ export class CandlesticksComponent implements OnInit {
       {
         type: 'bar',
         name: 'Volume',
-        data: this.data.echartVolumes,
-        barWidth: '70%',
+        data: this.binance.echartVolumes,
+        barWidth: this.widthBar,
         legendHoverLink: false,
         xAxisIndex: 1,
         yAxisIndex: 1,
@@ -424,7 +429,7 @@ export class CandlesticksComponent implements OnInit {
       {
         type: 'line',
         name: 'SMA',
-        data: this.data.echartSlowSMA,
+        data: this.ta.SimpleMovingAverage(this.binance.binanceCandlesticks, this.timePeriodSlowSMA),
         legendHoverLink: false,
         lineStyle:
         {
@@ -445,7 +450,7 @@ export class CandlesticksComponent implements OnInit {
       {
         type: 'line',
         name: 'SMA',
-        data: this.data.echartSMA,
+        data: this.ta.SimpleMovingAverage(this.binance.binanceCandlesticks, this.timePeriodSMA),
         legendHoverLink: false,
         lineStyle:
         {
@@ -467,7 +472,7 @@ export class CandlesticksComponent implements OnInit {
       {
         type: 'line',
         name: 'SMA',
-        data: this.data.echartFastSMA,
+        data: this.ta.SimpleMovingAverage(this.binance.binanceCandlesticks, this.timePeriodFastSMA),
         legendHoverLink: false,
         lineStyle:
         {
@@ -478,8 +483,6 @@ export class CandlesticksComponent implements OnInit {
         smooth: true,
         clip: false,
         showSymbol: false,
-        animationDuration: 200,
-        animationEasing: 'linear',
         emphasis:
         {
           lineStyle:

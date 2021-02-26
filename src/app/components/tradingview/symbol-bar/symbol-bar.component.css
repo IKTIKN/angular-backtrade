@@ -1,7 +1,5 @@
 th, td {
-    
     text-align: left;
-    /* border: 1px solid rgb(44, 44, 44); */
     min-width: fit-content;
     padding-right: 15px;
 }
@@ -13,19 +11,17 @@ th {
 td {
     color: #f0f6fc;
     text-align: start;
-    font-size: 14px;
+    font-size: small;
 }
 
 .symbolBar {
     background-color: rgb(1, 4, 9);
-    /* border-bottom: 20px solid #161b22; */
-    font-size: 10px;
-    padding: 10px;
+    font-size: x-small;
+    padding: 5px 10px 0px 10px;
 }
-
 
 .bigText {
     color: #f0f6fc;
-    font-size: 22px;
+    font-size: x-large;
     text-align: left;
 }

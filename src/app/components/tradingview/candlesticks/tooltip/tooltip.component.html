@@ -1,25 +1,25 @@
 <div class="tooltip">
-	{{ tooltipData.binanceOpenTime | date:'YYYY/MM/dd, HH:mm'}}
-	O: <span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'"> {{ tooltipData.binanceOpenPrice }} </span> 
-	H: <span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'"> {{ tooltipData.binanceHighPrice }} </span> 
-	L: <span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'"> {{ tooltipData.binanceLowPrice }} </span> 
-	C: <span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'"> {{ tooltipData.binanceClosePrice }} </span> 
+	{{ candlestick.openTime | date:'YYYY/MM/dd, HH:mm'}}
+	O: <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.open }} </span> 
+	H: <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.high }} </span> 
+	L: <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.low }} </span> 
+	C: <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.close }} </span> 
 	
 	CHANGE:
-	<span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'"> 
-		{{ ( (tooltipData.binanceClosePrice - tooltipData.binanceOpenPrice) / tooltipData.binanceOpenPrice ) * 100 | number:'0.2-2'}}%
+	<span [class]="isBullish() ? 'green' : 'red'"> 
+		{{ ( (+candlestick.close - +candlestick.open) / +candlestick.open ) * 100 | number:'0.2-2'}}%
 	</span> 
 
 	AMPLITUDE:
-	<span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'">
-		{{ ( (tooltipData.binanceHighPrice - tooltipData.binanceLowPrice) / tooltipData.binanceLowPrice) * 100  | number:'0.2-2'}}%
+	<span [class]="isBullish() ? 'green' : 'red'">
+		{{ ( (+candlestick.high - +candlestick.low) / +candlestick.low) * 100  | number:'0.2-2'}}%
 	</span> 
 
 </div>
 
 
 <div id="volume" class="tooltip">
-	Vol(BASE): <span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'"> {{ tooltipData.binanceVolume | number }} </span> 
-	Vol(QUOTE): <span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'"> {{ tooltipData.binanceQuoteVolume | number}} </span> 
-	Trades: <span [class]="tooltipData.movementIndicator > 0 ? 'green' : 'red'"> {{ tooltipData.binanceTrades }} </span> 
+	Vol(BASE): <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.volume | number }} </span> 
+	Vol(QUOTE): <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.quoteAssetVolume | number}} </span> 
+	Trades: <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.trades }} </span> 
 </div>

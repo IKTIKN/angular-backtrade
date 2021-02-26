@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CandlestickDataService } from 'src/app/services/candlestick-data.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { ITicker24h } from 'src/app/interfaces/ticker24h';
 
 @Component({
   selector: 'app-symbol-bar',
@@ -8,8 +8,9 @@ import { CandlestickDataService } from 'src/app/services/candlestick-data.servic
 })
 export class SymbolBarComponent implements OnInit {
 
+  @Input() ticker24h: ITicker24h;
 
-  constructor(public data: CandlestickDataService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

@@ -18,7 +18,7 @@ export class TaService {
       } else {
         let templist = [];
         for (let y=x; y>x-averageLength; y--) {
-          templist.push(priceData[y][1]);
+          templist.push(priceData[y].open);
         }
         let sum = 0;
         templist.forEach(price => {

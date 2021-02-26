@@ -99,9 +99,9 @@ export class BinanceApiService {
    * @param symbol   Marketsymbol.
    * @param interval Candlestick time interval.
    */
-  getCandlestickData(symbol: string, interval: string): Observable<ICandlestick[]> {
+  getCandlestickData(symbol: string, interval: string): Observable<any[]> {
     const requestUrl = `/api/v3/klines?limit=1000&interval=${interval}&symbol=${symbol}`;
-    return this.http.get<ICandlestick[]>(this.baseUrl + requestUrl);
+    return this.http.get<any[]>(this.baseUrl + requestUrl);
   }
 
 
