@@ -12,7 +12,7 @@ export class TradingviewComponent implements OnInit {
   constructor(public binance: BinanceDataService) { }
 
   ngOnInit(): void {
-    this.binance.initializeTradingView(this.binance.selectedSymbol, this.binance.selectedInterval);
+    this.binance.initializeTradingView(this.binance.selectedSymbol.symbol, this.binance.selectedInterval);
   }
 
 }

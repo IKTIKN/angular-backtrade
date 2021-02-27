@@ -11,7 +11,7 @@ import { BinanceApiService } from './binance-api.service';
 })
 export class BinanceDataService {
 
-  selectedSymbol = 'LTCUSDT';
+  selectedSymbol: ISymbol;
   selectedInterval = '1h'
 
   exchangeInfoLoaded: boolean = false;
@@ -31,9 +31,7 @@ export class BinanceDataService {
   echartCandlesticks: string[][];
   echartOpenTimes: string[];
   echartVolumes: any[];
-  echartSlowSMA: number[];
-  echartSMA: number[];
-  echartFastSMA: number[];
+
 
   binanceCandlesticks: ICandlestick[];
 
@@ -50,7 +48,7 @@ export class BinanceDataService {
 
 
   initializeTradingView(symbol: string, interval: string): void {
-    this.selectedSymbol = symbol;
+    this.selectedSymbol = this.setSymbol(symbol);
     this.selectedInterval = interval;
     this.echartLoaded = false;
     this.currentTickerLoaded = false;
@@ -59,12 +57,27 @@ export class BinanceDataService {
   }
 
 
+  setSymbol(symbol: string): ISymbol{
+    let selectedSymbol: ISymbol;
+    this.exchangeInfo.symbols.forEach(
+      s => {
+        if (s.symbol === symbol) {
+          selectedSymbol = s
+        }
+    });
+    console.log(selectedSymbol)
+    return selectedSymbol;
+  }
+
+
   setBinanceExchangeInfo(): void {
     this.api.getExchangeInformation().subscribe(
       (info: IExchangeInformation) => {
         this.exchangeInfo = info;
+        this.selectedSymbol = info.symbols[0];
         this.assets = this.extractAllAssets();
         this.exchangeInfoLoaded = true;
+        // console.log(this.exchangeInfo.symbols)
       }
     );
   }

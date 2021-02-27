@@ -1,9 +1,9 @@
 <div class="tooltip">
 	{{ candlestick.openTime | date:'YYYY/MM/dd, HH:mm'}}
-	O: <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.open }} </span> 
-	H: <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.high }} </span> 
-	L: <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.low }} </span> 
-	C: <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.close }} </span> 
+	O: <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.open | number:decimalFormat }} </span> 
+	H: <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.high | number:decimalFormat }} </span> 
+	L: <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.low | number:decimalFormat }} </span> 
+	C: <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.close | number:decimalFormat }} </span> 
 	
 	CHANGE:
 	<span [class]="isBullish() ? 'green' : 'red'"> 
@@ -14,12 +14,11 @@
 	<span [class]="isBullish() ? 'green' : 'red'">
 		{{ ( (+candlestick.high - +candlestick.low) / +candlestick.low) * 100  | number:'0.2-2'}}%
 	</span> 
-
 </div>
 
 
 <div id="volume" class="tooltip">
-	Vol(BASE): <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.volume | number }} </span> 
-	Vol(QUOTE): <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.quoteAssetVolume | number}} </span> 
+	Vol({{ symbol.baseAsset }}): <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.volume | number:'1.0-0' }} </span> 
+	Vol({{ symbol.quoteAsset }}): <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.quoteAssetVolume | number:'1.0-0'}} </span> 
 	Trades: <span [class]="isBullish() ? 'green' : 'red'"> {{ candlestick.trades }} </span> 
 </div>

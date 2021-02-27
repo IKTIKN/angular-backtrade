@@ -1,5 +1,6 @@
 <app-symbol-bar
     [ticker24h]="binance.currentTicker24h"
+    [symbol]="binance.selectedSymbol"
     *ngIf="binance.echartLoaded && binance.currentTickerLoaded">
 </app-symbol-bar>
 

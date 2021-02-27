@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ISymbol } from 'src/app/interfaces/symbol';
 import { ITicker24h } from 'src/app/interfaces/ticker24h';
 
 @Component({
@@ -9,10 +10,24 @@ import { ITicker24h } from 'src/app/interfaces/ticker24h';
 export class SymbolBarComponent implements OnInit {
 
   @Input() ticker24h: ITicker24h;
-
+  @Input() symbol: ISymbol;
+  
+  decimalFormat: string;
+  
   constructor() { }
 
   ngOnInit(): void {
+    this.decimalFormat = this.setDecimalFormat()
   }
 
+
+  setDecimalFormat(): string {
+    let decimalFormat: number = 0;
+    let minPrice: number = +this.symbol.filters[0].minPrice;
+    while(minPrice != 1) {
+      minPrice *= 10;
+      decimalFormat += 1;
+    }
+    return `1.${decimalFormat}-${decimalFormat}`;
+  }
 }

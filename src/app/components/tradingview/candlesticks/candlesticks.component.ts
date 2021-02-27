@@ -82,7 +82,7 @@ export class CandlesticksComponent implements OnInit {
       data:
       [
         {
-          name: this.binance.selectedSymbol,
+          name: this.binance.selectedSymbol.baseAsset,
           icon: 'none'
         },
         {
@@ -402,7 +402,7 @@ export class CandlesticksComponent implements OnInit {
       {
         type: 'candlestick',
         data: this.binance.echartCandlesticks,
-        name: this.binance.selectedSymbol,
+        name: this.binance.selectedSymbol.baseAsset,
         barWidth: this.widthBar,
         legendHoverLink: false,
         itemStyle:

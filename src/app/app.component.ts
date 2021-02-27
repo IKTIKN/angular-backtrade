@@ -9,7 +9,7 @@ import { BinanceDataService } from './services/binance-data.service';
 export class AppComponent {
   title = 'backtrade';
 
-  constructor(private binance: BinanceDataService) {}
+  constructor(public binance: BinanceDataService) {}
 
   ngOnInit() {
     this.binance.setBinanceExchangeInfo();

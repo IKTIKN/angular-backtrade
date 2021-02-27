@@ -3,7 +3,8 @@
 <button mat-raised-button color="primary" (click)="test()">TEST</button> -->
 
 <app-tooltip
-    [candlestick]="binance.binanceCandlesticks[selectedCandlestickIndex]">
+    [candlestick]="binance.binanceCandlesticks[selectedCandlestickIndex]"
+    [symbol]="binance.selectedSymbol">
 </app-tooltip>
 
 <div echarts [options]="options" class="chart-lg"></div>

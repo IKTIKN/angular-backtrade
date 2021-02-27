@@ -2,27 +2,28 @@
     <table>
         <tr>
             <th class="bigText" rowspan="2" colspan="2">
-                {{ ticker24h.symbol }} 
+                <span id="baseAsset">{{ symbol.baseAsset }}</span>
+                <span id="quoteAsset">/{{ symbol.quoteAsset }}</span>
                 <span [class]="+ticker24h.priceChange > 0 ? 'green' : 'red'">
-                    {{ ticker24h.lastPrice }}
+                    {{ ticker24h.lastPrice | number:decimalFormat }}
                 </span>
             </th>
             <th>24h Change</th>
             <th>24h Open</th>
             <th>24h High</th>
             <th>24h Low</th> 
-            <th>24h Volume(BASE)</th>
-            <th>24h Volume(QUOTE)</th>
+            <th>24h Volume({{ symbol.baseAsset }})</th>
+            <th>24h Volume({{ symbol.quoteAsset }})</th>
         </tr>
         <tr>
             <td [class]="+ticker24h.priceChange > 0 ? 'green' : 'red'">
-                {{ ticker24h.priceChange | number }} {{ ticker24h.priceChangePercent | number }}%
+                {{ +ticker24h.priceChange | number:decimalFormat }} {{ +ticker24h.priceChangePercent | number: '1.2-2' }}%
             </td>
-            <td>{{ ticker24h.openPrice | number }}</td>
-            <td>{{ ticker24h.highPrice | number }}</td>
-            <td>{{ ticker24h.lowPrice | number }}</td>
-            <td>{{ ticker24h.volume | number }}</td>
-            <td>{{ ticker24h.quoteVolume | number }}</td>
+            <td>{{ ticker24h.openPrice | number:decimalFormat }}</td>
+            <td>{{ ticker24h.highPrice | number:decimalFormat }}</td>
+            <td>{{ ticker24h.lowPrice | number:decimalFormat }}</td>
+            <td>{{ ticker24h.volume | number: '1.2-2' }}</td>
+            <td>{{ ticker24h.quoteVolume | number: '1.2-2' }}</td>
         </tr>
     </table>
 </div>
