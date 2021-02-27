@@ -1,62 +1,62 @@
+<div>
 
-<table mat-table [dataSource]="tickers24h">
-
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
+  <form>
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input color="primary" matInput #message maxlength="10" placeholder="BTC" (focus)="setupFilter('symbol')" (keyup)="applyFilter($event.target.value)" >
+    </mat-form-field>
+  </form>
   
-    <!-- Position Column -->
-    <ng-container matColumnDef="Symbol">
-      <th mat-header-cell *matHeaderCellDef> Symbol </th>
+  <table mat-table [dataSource]="dataSource" matSort>
+    
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </th>
       <td mat-cell *matCellDef="let row"> {{ row.symbol }} </td>
     </ng-container>
   
-    <!-- Name Column -->
-    <ng-container matColumnDef="Price">
-      <th mat-header-cell *matHeaderCellDef> Price </th>
+    <ng-container matColumnDef="lastPrice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
       <td mat-cell *matCellDef="let row"> {{ row.lastPrice }} </td>
     </ng-container>
   
-    <!-- Weight Column -->
-    <ng-container matColumnDef="Low">
-      <th mat-header-cell *matHeaderCellDef> Low </th>
+    <ng-container matColumnDef="lowPrice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Low </th>
       <td mat-cell *matCellDef="let row"> {{ row.lowPrice }} </td>
     </ng-container>
   
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="High">
-      <th mat-header-cell *matHeaderCellDef> High </th>
+    <ng-container matColumnDef="highPrice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> High </th>
       <td mat-cell *matCellDef="let row"> {{ row.highPrice }} </td>
     </ng-container>
   
-    <!-- Name Column -->
-    <ng-container matColumnDef="Change">
-        <th mat-header-cell *matHeaderCellDef> Change </th>
+    <ng-container matColumnDef="priceChange">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Change </th>
         <td mat-cell *matCellDef="let row">
             <span [class]="row.priceChange > 0 ? 'green' : 'red'">
-                {{ row.priceChange | number }}
+                {{ row.priceChange | number:'1.2-8' }}
             </span>
         </td>
     </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="Change %">
-        <th mat-header-cell *matHeaderCellDef> Change % </th>
-        <td mat-cell *matCellDef="let row">
+  
+    <ng-container matColumnDef="priceChangePercent">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Change % </th>
+        <td id="right" mat-cell *matCellDef="let row">
             <span [class]="row.priceChangePercent > 0 ? 'green' : 'red'">
-                {{ row.priceChangePercent | number }}
+                {{ row.priceChangePercent | number:'1.2-2' }}
             </span>
         </td>
     </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="Volume">
-        <th mat-header-cell *matHeaderCellDef> Volume </th>
-        <td mat-cell *matCellDef="let row"> {{ row.volume | number }} </td>
+  
+    <ng-container matColumnDef="volume">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Volume </th>
+        <td id="right" mat-cell *matCellDef="let row"> {{ row.quoteVolume | number:'1.0-0' }} </td>
     </ng-container>
-
+  
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </table>
-  
+  <mat-paginator [pageSizeOptions]="[10, 25, 50, 100, 200]" showFirstLastButtons></mat-paginator>
+</div>
+
+
   
