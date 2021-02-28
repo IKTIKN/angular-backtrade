@@ -52,8 +52,11 @@ export class BinanceDataService {
     this.selectedInterval = interval;
     this.echartLoaded = false;
     this.currentTickerLoaded = false;
-    this.setTicker24h(symbol);
-    this.generateEchart(symbol, interval);
+    this.setTickers24h();
+
+    this.setTicker24h(this.selectedSymbol.symbol);
+    this.generateEchart(this.selectedSymbol.symbol, interval);
+    
   }
 
 
@@ -65,6 +68,9 @@ export class BinanceDataService {
           selectedSymbol = s
         }
     });
+    if (!selectedSymbol) {
+      selectedSymbol = this.exchangeInfo.symbols[0];
+    }
     console.log(selectedSymbol)
     return selectedSymbol;
   }
@@ -74,7 +80,7 @@ export class BinanceDataService {
     this.api.getExchangeInformation().subscribe(
       (info: IExchangeInformation) => {
         this.exchangeInfo = info;
-        this.selectedSymbol = info.symbols[0];
+        this.selectedSymbol = this.setSymbol('BTCUSDT');
         this.assets = this.extractAllAssets();
         this.exchangeInfoLoaded = true;
         // console.log(this.exchangeInfo.symbols)

@@ -2,8 +2,10 @@
     <table>
         <tr>
             <th class="bigText" rowspan="2" colspan="2">
-                <span id="baseAsset">{{ symbol.baseAsset }}</span>
-                <span id="quoteAsset">/{{ symbol.quoteAsset }}</span>
+                <a (click)="showMarkets=!showMarkets">
+                    <span id="baseAsset">{{ symbol.baseAsset }}</span>
+                    <span id="quoteAsset">/{{ symbol.quoteAsset }}</span>
+                </a>
                 <span [class]="+ticker24h.priceChange > 0 ? 'green' : 'red'">
                     {{ ticker24h.lastPrice | number:decimalFormat }}
                 </span>
@@ -26,4 +28,6 @@
             <td>{{ ticker24h.quoteVolume | number: '1.2-2' }}</td>
         </tr>
     </table>
+    <app-all-markets *ngIf="showMarkets"></app-all-markets>
 </div>
+

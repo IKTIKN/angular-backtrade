@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { BinanceDataService } from 'src/app/services/binance-data.service';
-
+import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-tradingview',
   templateUrl: './tradingview.component.html',
@@ -9,10 +11,19 @@ import { BinanceDataService } from 'src/app/services/binance-data.service';
 export class TradingviewComponent implements OnInit {
   title = 'Tradingview';
 
-  constructor(public binance: BinanceDataService) { }
 
+  constructor(
+    public binance: BinanceDataService,
+    private route: ActivatedRoute,
+  ) { }
+  
+  
+  
   ngOnInit(): void {
-    this.binance.initializeTradingView(this.binance.selectedSymbol.symbol, this.binance.selectedInterval);
+    this.route.params.subscribe(params => {
+      console.log(params.symbol);
+      this.binance.initializeTradingView(params.symbol, this.binance.selectedInterval);
+    });
   }
 
 }

@@ -1,23 +1,40 @@
-div {
+.card {
     width: fit-content;
-    margin: 0 auto;
-    padding: 150px;
+    height: fit-content;
+    margin: 0px auto;
+    padding: 5px 25px;
+    background-color: #161b22;
+    
 }
 
 table {
     background-color: inherit;
+    width: 100%;
+    /* border: 1px solid lemonchiffon; */
 }
 
 mat-paginator {
     background-color: inherit;
-
 }
+
+
 .mat-form-field {
     font-size: 14px;
-    width: 10%;
+    width: 100px;
+    color: salmon;
 }
 
-td, th {
+
+
+td {
+    font-size: small;
     color: inherit;
-    width: 150px;
+    width: 200px;
+    /* text-align: end!important; */
+    border-bottom: #161b22;
+}
+
+
+#symbol {
+    text-align: start!important;
 }

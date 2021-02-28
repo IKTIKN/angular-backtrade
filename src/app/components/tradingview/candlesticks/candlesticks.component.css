@@ -1,4 +1,5 @@
 .chart-lg {
     /* background-color: #ffffff; */
     height: 610px;
+    z-index: 0;
 }

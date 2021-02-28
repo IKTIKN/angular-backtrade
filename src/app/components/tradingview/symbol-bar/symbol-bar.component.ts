@@ -8,12 +8,12 @@ import { ITicker24h } from 'src/app/interfaces/ticker24h';
   styleUrls: ['./symbol-bar.component.css']
 })
 export class SymbolBarComponent implements OnInit {
-
+  
   @Input() ticker24h: ITicker24h;
   @Input() symbol: ISymbol;
   
   decimalFormat: string;
-  
+  showMarkets: boolean = false;
   constructor() { }
 
   ngOnInit(): void {

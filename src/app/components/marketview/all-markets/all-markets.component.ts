@@ -13,11 +13,13 @@ import { BinanceDataService } from 'src/app/services/binance-data.service';
   styleUrls: ['./all-markets.component.css']
 })
 export class AllMarketsComponent implements AfterViewInit {
+  @Input() showPaginator: boolean;
+  
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['symbol', 'lastPrice', 'lowPrice', 'highPrice', 'priceChange', 'priceChangePercent', 'volume'];
-  dataSource = new MatTableDataSource(this.binance.tickers24h);
+  displayedColumns: string[] = ['symbol', 'priceChangePercent', 'quoteVolume'];
+  dataSource = new MatTableDataSource<ITicker24h>(this.binance.tickers24h);
   
 
   constructor(private binance: BinanceDataService) {
