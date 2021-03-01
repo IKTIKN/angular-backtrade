@@ -12,8 +12,10 @@ export class SymbolBarComponent implements OnInit {
   @Input() ticker24h: ITicker24h;
   @Input() symbol: ISymbol;
   
+  displayedColumns: string[] = ['symbol', 'lastPrice', 'priceChangePercent', 'quoteVolume'];
   decimalFormat: string;
   showMarkets: boolean = false;
+  
   constructor() { }
 
   ngOnInit(): void {

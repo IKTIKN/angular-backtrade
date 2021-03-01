@@ -1,5 +1,6 @@
 <app-all-markets
-    [showPaginator]="false"
+    [showPaginator]="true"
+    [displayedColumns]="displayedColumns"
     *ngIf="binance.tickersLoaded; else loading">
 </app-all-markets>
 

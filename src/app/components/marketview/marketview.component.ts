@@ -8,6 +8,8 @@ import { BinanceDataService } from 'src/app/services/binance-data.service';
 })
 export class MarketviewComponent implements OnInit {
 
+  displayedColumns: string[] = ['symbol', 'lastPrice', 'highPrice', 'lowPrice', 'priceChangePercent', 'quoteVolume'];
+
   constructor(public binance: BinanceDataService) { }
 
   ngOnInit(): void {

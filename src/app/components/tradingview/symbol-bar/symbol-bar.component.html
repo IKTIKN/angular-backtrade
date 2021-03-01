@@ -28,6 +28,9 @@
             <td>{{ ticker24h.quoteVolume | number: '1.2-2' }}</td>
         </tr>
     </table>
-    <app-all-markets *ngIf="showMarkets"></app-all-markets>
+    <app-all-markets
+        [displayedColumns]="displayedColumns"
+        *ngIf="showMarkets">
+    </app-all-markets>
 </div>
 

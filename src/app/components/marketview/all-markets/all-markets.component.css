@@ -1,10 +1,9 @@
 .card {
-    width: fit-content;
+    width: 94%;
     height: fit-content;
-    margin: 0px auto;
-    padding: 5px 25px;
-    background-color: #161b22;
-    
+    /* padding: 5px 25px; */
+    background-color: inherit;
+
 }
 
 table {
@@ -21,20 +20,29 @@ mat-paginator {
 .mat-form-field {
     font-size: 14px;
     width: 100px;
-    color: salmon;
 }
 
+a {
+    text-decoration: none;
+    /* font-size: medium; */
+    color: #f0f6fc;
+    /* font-weight: bold; */
+}
 
+td, th {
+    font-size: small;
+    color: #636c77;
+    width: 100px!important;
+    /* text-align: end!important; */
+    border-bottom: #161b22c2;
+    /* border: 1px solid salmon; */
+}
 
 td {
-    font-size: small;
-    color: inherit;
-    width: 200px;
-    /* text-align: end!important; */
-    border-bottom: #161b22;
+    color: #f0f6fcf1;
+
 }
 
-
-#symbol {
-    text-align: start!important;
+#right {
+    text-align: end!important;
 }

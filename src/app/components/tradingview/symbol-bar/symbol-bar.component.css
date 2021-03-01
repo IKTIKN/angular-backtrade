@@ -1,13 +1,14 @@
 app-all-markets {
     position: absolute;
-    width: 420px;
-    height: 500px;
-    min-height: 500px;
+    width: 550px;
+    height: fit-content;
+    max-height: 500px;
     top: 110px;
-    background-color: #161b22;
+    background-color: rgb(1, 4, 9);
     z-index: 200;
     overflow-y: scroll;
-    scrollbar-width: none;
+    scrollbar-width: thin;
+    scrollbar-color: #f0f6fc #161b22;
 }
 
 
