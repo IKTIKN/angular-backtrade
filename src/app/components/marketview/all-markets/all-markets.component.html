@@ -18,7 +18,7 @@
         <ng-container matColumnDef="symbol">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>  Symbol </th>
           <td mat-cell *matCellDef="let row"> 
-            <a [routerLink]="['/tradingview', row.symbol]">
+            <a [routerLink]="['/tradingview', row.symbol, binance.selectedInterval]">
               {{ row.symbol }}  
             </a>
           </td>

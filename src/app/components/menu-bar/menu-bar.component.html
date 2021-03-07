@@ -1,6 +1,6 @@
 
 <ul>
     <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-    <li><a [routerLink]="['/tradingview', binance.selectedSymbol.symbol]" routerLinkActive="active">Tradingview</a></li>
+    <li><a [routerLink]="['/tradingview', binance.selectedSymbol.symbol, binance.selectedInterval]" routerLinkActive="active">Tradingview</a></li>
     <li><a routerLink="/marketview" routerLinkActive="active">Marketview</a></li>
 </ul> 

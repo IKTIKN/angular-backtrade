@@ -1,0 +1,5 @@
+<ul>
+    <li *ngFor="let interval of intervals">
+        <a [routerLink]="['/tradingview', selectedSymbol, interval]" > <span [class]="selectedInterval===interval ? 'active' : ''">{{ interval }}</span></a>
+    </li>
+</ul> 

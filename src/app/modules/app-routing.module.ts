@@ -6,7 +6,7 @@ import { TradingviewComponent } from '../components/tradingview/tradingview.comp
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'tradingview/:symbol', component: TradingviewComponent },
+  { path: 'tradingview/:symbol/:interval', component: TradingviewComponent },
   { path: 'marketview', component: MarketviewComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];

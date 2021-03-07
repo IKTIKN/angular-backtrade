@@ -1,11 +1,22 @@
-<app-symbol-bar
-    [ticker24h]="binance.currentTicker24h"
-    [symbol]="binance.selectedSymbol"
-    *ngIf="binance.echartLoaded && binance.currentTickerLoaded">
-</app-symbol-bar>
+<div *ngIf="binance.echartLoaded && binance.currentTickerLoaded; else loading">
 
-<app-candlesticks *ngIf="binance.echartLoaded && binance.currentTickerLoaded; else loading">
-</app-candlesticks>
+    <app-symbol-bar
+        [ticker24h]="binance.currentTicker24h"
+        [symbol]="binance.selectedSymbol"
+        *ngIf="binance.echartLoaded && binance.currentTickerLoaded">
+    </app-symbol-bar>
+
+    <app-interval-bar
+        [selectedSymbol]="binance.selectedSymbol.symbol"
+        [selectedInterval]="binance.selectedInterval">
+    </app-interval-bar>
+
+    <app-candlesticks >
+    </app-candlesticks>
+
+</div>
+
+
 
 <ng-template #loading>
     <app-loading></app-loading>
