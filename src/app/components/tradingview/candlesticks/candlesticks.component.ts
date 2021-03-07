@@ -31,12 +31,15 @@ export class CandlesticksComponent implements OnInit {
   timePeriodSlowSMA = 99;
   timePeriodSMA = 25;
   timePeriodFastSMA = 7;
+  
+  timePeriodBollingerBands = 21;
 
   widthAverageLine = 1;
 
   widthBar = '70%';
 
   selectedCandlestickIndex = 0;
+
 
 
   constructor(
@@ -88,8 +91,16 @@ export class CandlesticksComponent implements OnInit {
         {
           name: 'SMA',
           icon: 'none'
+        },
+        {
+          name: 'BOLL',
+          icon: 'none'
         }
       ],
+      selected: {
+        'SMA': false,
+        'BOLL': false
+      },
       inactiveColor: this.colorAxis,
       right: '8%',
     },
@@ -429,7 +440,7 @@ export class CandlesticksComponent implements OnInit {
       {
         type: 'line',
         name: 'SMA',
-        data: this.ta.SimpleMovingAverage(this.binance.binanceCandlesticks, this.timePeriodSlowSMA),
+        data: this.ta.simpleMovingAverage(this.binance.binanceCandlesticks, this.timePeriodSlowSMA),
         legendHoverLink: false,
         lineStyle:
         {
@@ -450,7 +461,7 @@ export class CandlesticksComponent implements OnInit {
       {
         type: 'line',
         name: 'SMA',
-        data: this.ta.SimpleMovingAverage(this.binance.binanceCandlesticks, this.timePeriodSMA),
+        data: this.ta.simpleMovingAverage(this.binance.binanceCandlesticks, this.timePeriodSMA),
         legendHoverLink: false,
         lineStyle:
         {
@@ -472,12 +483,94 @@ export class CandlesticksComponent implements OnInit {
       {
         type: 'line',
         name: 'SMA',
-        data: this.ta.SimpleMovingAverage(this.binance.binanceCandlesticks, this.timePeriodFastSMA),
+        data: this.ta.simpleMovingAverage(this.binance.binanceCandlesticks, this.timePeriodFastSMA),
         legendHoverLink: false,
         lineStyle:
         {
           color: this.colorFastSMA,
           width: this.widthAverageLine
+        },
+        z: 0,
+        smooth: true,
+        clip: false,
+        showSymbol: false,
+        emphasis:
+        {
+          lineStyle:
+          {
+            width: this.widthAverageLine
+          }
+        }
+      }
+      , 
+      {
+        type: 'line',
+        name: 'BOLL',
+        data: this.ta.bollingerBands(this.binance.binanceCandlesticks, this.timePeriodBollingerBands, 2).upper,
+        legendHoverLink: false,
+        lineStyle:
+        {
+          color: this.colorFastSMA,
+          width: this.widthAverageLine,
+          // opacity: 0.5
+        },
+        areaStyle: {
+          color: '#ffffff',
+          origin: 'end',
+          opacity: 0
+        },
+        z: 0,
+        smooth: true,
+        clip: false,
+        showSymbol: false,
+        emphasis:
+        {
+          lineStyle:
+          {
+            width: this.widthAverageLine
+          }
+        }
+      }
+      , 
+      {
+        type: 'line',
+        name: 'BOLL',
+        data: this.ta.bollingerBands(this.binance.binanceCandlesticks, this.timePeriodBollingerBands, 2).middle,
+        legendHoverLink: false,
+        lineStyle:
+        {
+          color: this.colorSlowSMA,
+          width: this.widthAverageLine,
+          // opacity: 0.5
+        },
+        z: 0,
+        smooth: true,
+        clip: false,
+        showSymbol: false,
+        emphasis:
+        {
+          lineStyle:
+          {
+            width: this.widthAverageLine
+          }
+        }
+      }
+      , 
+      {
+        type: 'line',
+        name: 'BOLL',
+        data: this.ta.bollingerBands(this.binance.binanceCandlesticks, this.timePeriodBollingerBands, 2).lower,
+        legendHoverLink: false,
+        lineStyle:
+        {
+          color: this.colorSMA,
+          width: this.widthAverageLine,
+          // opacity: 0.5
+        },
+        areaStyle: {
+          color: '#ffffff',
+          origin: 'start',
+          opacity: 0
         },
         z: 0,
         smooth: true,

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BollingerBands } from '../interfaces/bollingerbands';
 import { ICandlestick } from '../interfaces/candlestick';
 
 
@@ -9,7 +10,7 @@ export class TaService {
 
   constructor() { }
 
-  SimpleMovingAverage(priceData: ICandlestick[], averageLength: number): number[] {
+  simpleMovingAverage(priceData: ICandlestick[], averageLength: number): number[] {
     let sma = [];
     
     for (let x=0; x<priceData.length; x++) {
@@ -28,15 +29,36 @@ export class TaService {
       }
     }
     // console.log("SIMPLE MOVING AVERAGE", sma.length, sma);
-    
     return sma
   }
 
-  ExponentialMovingAverage() {
+  
+  exponentialMovingAverage(priceData: ICandlestick[], averageLength: number) {
 
   }
 
-  BollingerBands() {
 
+  bollingerBands(priceData: ICandlestick[], averageLength: number, deviations: number): BollingerBands {
+
+    let bollingerBands: BollingerBands = {upper: [], lower: [], middle: []};
+
+    let sma = this.simpleMovingAverage(priceData, averageLength);
+
+    sma.forEach(price => {
+      let deviation: number = 0;
+      let currentIndex: number = sma.indexOf(price);
+      for (let x=currentIndex; x>currentIndex-averageLength; x--) {
+        if (currentIndex >= averageLength - 1) {
+          deviation += ((+priceData[x].close - price) ** 2);
+        } else {
+          
+        }
+      }
+      let averageDeviation: number = Math.sqrt(deviation/averageLength);
+      bollingerBands.upper.push(price + (deviations * averageDeviation));
+      bollingerBands.middle.push(price);
+      bollingerBands.lower.push(price - (deviations * averageDeviation));
+    });
+    return bollingerBands;
   }
 }
