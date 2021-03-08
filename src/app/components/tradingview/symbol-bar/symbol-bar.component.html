@@ -4,7 +4,12 @@
             <th class="bigText" rowspan="2" colspan="2">
                 <a (click)="showMarkets=!showMarkets">
                     <span id="baseAsset">{{ symbol.baseAsset }}</span>
-                    <span id="quoteAsset">/{{ symbol.quoteAsset }}</span>
+                    
+                    <span id="quoteAsset">/{{ symbol.quoteAsset }}
+                        <mat-icon *ngIf="!showMarkets">arrow_drop_down</mat-icon>
+                        <mat-icon *ngIf="showMarkets">arrow_drop_up</mat-icon>
+
+                    </span>
                 </a>
                 <span [class]="+ticker24h.priceChange > 0 ? 'green' : 'red'">
                     {{ ticker24h.lastPrice | number:decimalFormat }}

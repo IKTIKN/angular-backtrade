@@ -14,6 +14,8 @@ export class BinanceDataService {
   selectedSymbol: ISymbol;
   selectedInterval = '1h'
 
+  selectedQuoteMarket = 'USDT'
+  
   exchangeInfoLoaded: boolean = false;
   exchangeInfo: IExchangeInformation;
   
@@ -83,7 +85,7 @@ export class BinanceDataService {
         this.selectedSymbol = this.setSymbol('BTCUSDT');
         this.assets = this.extractAllAssets();
         this.exchangeInfoLoaded = true;
-        // console.log(this.exchangeInfo.symbols)
+        console.log(this.assets.quoteAssets)
       }
     );
   }

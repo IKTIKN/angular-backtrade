@@ -1,26 +1,35 @@
-
-
-
 <mat-card class="card">
 
   <mat-card-content>
     <div>
 
       <form>
-        <mat-form-field>
-          <mat-label>Search</mat-label>
-          <input color="primary" matInput #message maxlength="100" placeholder="BTC" (focus)="setupFilter('symbol')" (keyup)="applyFilter($event.target.value)" >
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label> Ticker </mat-label>
+
+          <mat-icon matPrefix>search</mat-icon>
+          <!-- <mat-label> Search </mat-label> -->
+          <input matInput #message maxlength="100" (focus)="setupFilter('symbol')" (keyup)="applyFilter($event.target.value)" >
+        </mat-form-field>
+
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label> Market </mat-label>
+          <mat-select [(value)]="binance.selectedQuoteMarket" (selectionChange)="onMarketChange($event)">
+            <mat-option *ngFor="let asset of binance.assets.quoteAssets" [value]="asset">
+              {{ asset }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </form>
       
-      <table mat-table [dataSource]="dataSource" matSort>
+      <table mat-table [dataSource]="dataSource" matSort matSortActive="quoteVolume" matSortDirection="desc">
         
         <ng-container matColumnDef="symbol">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>  Symbol </th>
-          <td mat-cell *matCellDef="let row"> 
-            <a [routerLink]="['/tradingview', row.symbol, binance.selectedInterval]">
-              {{ row.symbol }}  
-            </a>
+          <td mat-cell *matCellDef="let row" > 
+         
+            {{ row.symbol }}  
+      
           </td>
         </ng-container>
       
@@ -29,7 +38,6 @@
           <td mat-cell *matCellDef="let row"> 
             <span [class]="row.priceChangePercent > 0 ? 'green' : 'red'"> 
               {{ row.lastPrice | number:'1.2-8' }} 
-
             </span>
           </td>
         </ng-container>
@@ -64,14 +72,17 @@
       
         <ng-container matColumnDef="quoteVolume">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Volume </th>
-            <td  mat-cell *matCellDef="let row"> {{ row.quoteVolume | number:'1.0-0' }} </td>
+            <td mat-cell *matCellDef="let row"> {{ row.quoteVolume | number:'1.0-0' }} </td>
         </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/tradingview', row.symbol, binance.selectedInterval]"></tr>
       </table>
+
       <mat-paginator *ngIf="showPaginator" [pageSizeOptions]="[10, 25, 50, 100, 200]" showFirstLastButtons></mat-paginator>
+
     </div>
+
   </mat-card-content>
 
 </mat-card>
